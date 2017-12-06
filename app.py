@@ -1,30 +1,23 @@
-from websocket_server import WebsocketServer
-import os
+from flask import Flask, render_template
+from flask_socketio import SocketIO, send, emit
 
-# Called for every client connecting (after handshake)
-def new_client(client, server):
-	print("New client connected and was given id %d" % client['id'])
-	server.send_message_to_all("Hey all, a new client has joined us")
+app = Flask(__name__)
 
-
-# Called for every client disconnecting
-def client_left(client, server):
-	print("Client(%d) disconnected" % client['id'])
+socketio = SocketIO(app)
 
 
-# Called when a client sends a message
-def message_received(client, server, message):
-	if len(message) > 200:
-		message = message[:200]+'..'
-	print("Client(%d) said: %s" % (client['id'], message))
-	server.send_message_to_all(message)
-"""
-print("Server running")
-PORT = int(os.environ.get("PORT", 5000))
-server = WebsocketServer(PORT)
-server.set_fn_new_client(new_client)
-server.set_fn_client_left(client_left)
-server.set_fn_message_received(message_received)
-server.run_forever()
-print("server closed")
-"""
+@app.route('/')
+def home_page():
+    return render_template("index.html")
+
+
+@socketio.on('new_message')
+def handle_new_message(message):
+    print("New message recieved: ", message)
+    # Broadcast the messsage to all connected clients.
+    emit("new_message_received", message, broadcast=True)
+
+
+
+if __name__ == '__main__':
+    socketio.run(app)
