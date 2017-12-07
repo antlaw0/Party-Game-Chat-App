@@ -1,4 +1,4 @@
-  var socket = io.connect('http://' + document.domain + ':' + location.port);
+  var socket = io.connect('https://hidden-harbor-28571.herokuapp.com/')
 
   socket.on('connect', function() {
             socket.emit('hello', {data: 'I\'m connected!'});
