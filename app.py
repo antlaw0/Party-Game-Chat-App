@@ -13,11 +13,11 @@ def home_page():
 
 @socketio.on('new_message')
 def handle_new_message(message):
-    print("New message received: "+message)
+    print("New message recieved: ", message)
     # Broadcast the messsage to all connected clients.
-    emit("new_message_received", str(request.sid)+" "+message, broadcast=True)
+    emit("new_message_received", message, broadcast=True)
 
 
-	
+
 if __name__ == '__main__':
     socketio.run(app)
