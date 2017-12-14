@@ -1,5 +1,5 @@
-  //var socket = io.connect('https://hidden-harbor-28571.herokuapp.com/')
-var socket = io.connect('https://localhost:5000')
+  var socket = io.connect('https://hidden-harbor-28571.herokuapp.com/')
+//var socket = io.connect('https://localhost:5000')
 
   socket.on('connect', function() {
             socket.emit('hello', {data: 'I\'m connected!'});

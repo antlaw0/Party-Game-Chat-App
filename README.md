@@ -1,2 +1,4 @@
 # Party-Game-Chat-App
 Made in SD Capstone 2017 MCTC, chat app to play games like Boulder Dash/Loaded Questions
+
+This application uses python with flask socketio to make  real-time chats. It is made for playing party games that requires players to write submissions on notecards. The app aids in removing the need for notecards. This eliminates players telling who wrote which notecard based on hand-writing, removes paper waste due to the notecards, and allows visually impaired players to more easily participate by accessing the web app with a screen reader to read all the submissions. The app is oriented to party games in that there is a clear messages button to clear previous messages before each round of play. Each player can either access the app through a phone or laptop while at the table. 
