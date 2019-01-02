@@ -1,19 +1,19 @@
-  //var socket = io.connect('https://hidden-harbor-28571.herokuapp.com/')
+  var socket = io.connect('https://hidden-harbor-28571.herokuapp.com/')
 //var socket = io.connect('http://localhost:5000')
-  var socket = io.connect('http://' + document.domain + ':' + location.port + '/index');
+
   
   socket.on('connect', function() {
             socket.emit('hello', {data: 'I\'m connected!'});
     });
 
 
-    var input = document.getElementById("new_message_text");
-    var button = document.getElementById("send_new_message");
-    var clearButton = document.getElementById("clear_message_list_button")
+    var nameinput = document.getElementById("name");
+    var button = document.getElementById("sendname");
+    //var clearButton = document.getElementById("clear_message_list_button")
 	var message_list = document.getElementById("message_list");
 
     button.addEventListener("click", function() {
-      var text = input.value;
+      var text = nameinput.value;
       socket.emit("new_message", text);
     })
 
